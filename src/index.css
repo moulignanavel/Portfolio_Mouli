@@ -1,0 +1,186 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: dark;
+    --color-lab-bg: 8 9 13;
+    --color-lab-subtle: 13 15 23;
+    --color-lab-panel: 18 21 32;
+    --color-lab-panel-hover: 24 28 43;
+    --color-lab-border: 255 255 255;
+    --color-lab-border-opacity: 0.08;
+    --color-lab-border-highlight-opacity: 0.2;
+    --color-lab-border-cyan: 56 189 248;
+    --color-lab-cyan: 56 189 248;
+    --color-lab-text-primary: 248 250 252;
+    --color-lab-text-secondary: 148 163 184;
+    --color-lab-text-muted: 100 116 139;
+    --glass-bg: rgba(18, 21, 32, 0.75);
+    --grid-color: rgba(255, 255, 255, 0.03);
+    --dots-color: rgba(255, 255, 255, 0.08);
+  }
+
+  html.light {
+    color-scheme: light;
+    --color-lab-bg: 241 245 249;
+    --color-lab-subtle: 226 232 240;
+    --color-lab-panel: 255 255 255;
+    --color-lab-panel-hover: 248 250 252;
+    --color-lab-border: 203 213 225;
+    --color-lab-border-opacity: 0.9;
+    --color-lab-border-highlight-opacity: 1;
+    --color-lab-border-cyan: 2 132 199;
+    --color-lab-cyan: 2 132 199;
+    --color-lab-text-primary: 15 23 42;
+    --color-lab-text-secondary: 33 41 55;
+    --color-lab-text-muted: 71 85 105;
+    --glass-bg: rgba(255, 255, 255, 0.95);
+    --grid-color: rgba(15, 23, 42, 0.06);
+    --dots-color: rgba(15, 23, 42, 0.1);
+  }
+
+  html, body {
+    scroll-behavior: smooth;
+    background-color: rgb(var(--color-lab-bg));
+    color: rgb(var(--color-lab-text-primary));
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+  }
+
+  /* Hide default browser mouse arrow pointer on desktop devices for clean custom cursor experience */
+  @media (pointer: fine) {
+    html, body, a, button, input, textarea, select, [role="button"], .cursor-pointer {
+      cursor: none !important;
+    }
+  }
+
+  /* Custom text selection styling */
+  ::selection {
+    background-color: rgba(56, 189, 248, 0.25);
+    color: var(--color-lab-text-primary);
+  }
+
+  /* Custom subtle scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--color-lab-bg);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-lab-panel-hover);
+    border-radius: 4px;
+    border: 2px solid var(--color-lab-bg);
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-lab-border-highlight);
+  }
+
+  /* Accessible focus indicators */
+  :focus-visible {
+    outline: 2px solid var(--color-lab-cyan);
+    outline-offset: 2px;
+  }
+}
+
+@layer utilities {
+  /* Digital Lab technical background grid overlay */
+  .bg-lab-grid {
+    background-size: 32px 32px;
+    background-image: 
+      linear-gradient(to right, var(--grid-color) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--grid-color) 1px, transparent 1px);
+  }
+
+  .bg-lab-grid-dense {
+    background-size: 16px 16px;
+    background-image: 
+      linear-gradient(to right, var(--grid-color) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--grid-color) 1px, transparent 1px);
+  }
+
+  .bg-lab-dots {
+    background-image: radial-gradient(var(--dots-color) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+
+  /* Subtle technical radial gradient glow */
+  .lab-glow-top {
+    background: radial-gradient(600px circle at 50% -100px, rgba(56, 189, 248, 0.08), transparent 80%);
+  }
+
+  /* Glass panel effect */
+  .glass-panel {
+    background-color: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--color-lab-border);
+    will-change: transform, box-shadow;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+  }
+
+  /* Animated Gradient Text */
+  .animate-gradient-text {
+    background: linear-gradient(135deg, #38BDF8 0%, #818CF8 50%, #34D399 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: textGradient 6s ease infinite;
+  }
+
+  /* Floating Levitation Effect */
+  .animate-float {
+    animation: floatLevitate 4s ease-in-out infinite;
+  }
+
+  .animate-float-delayed {
+    animation: floatLevitate 5s ease-in-out 1.5s infinite;
+  }
+
+  /* Ambient Pulse Glow Effect */
+  .animate-pulse-glow {
+    animation: pulseGlow 3s ease-in-out infinite;
+  }
+}
+
+@keyframes textGradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes floatLevitate {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50% { opacity: 0.8; transform: scale(1.06); }
+}
+
+/* Reduced motion accessibility support */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto !important;
+  }
+  
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+    transform: none !important;
+  }
+}
+
